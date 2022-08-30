@@ -1,0 +1,20 @@
+name: Deploy Heroku Workflow
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy-to-heroku:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+      - name: Deploying to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "actions-example-pedro" #Must be unique in Heroku
+          heroku_email: "lpedromendoza333@gmail.com"
+          branch: master
+        
